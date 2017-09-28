@@ -1,5 +1,4 @@
-#Implementation of CAOS: Concurrent-Access Obfuscated Store.
-
+# Implementation of CAOS: Concurrent-Access Obfuscated Store.
 
 > A secure cloud storage construction that acheives access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. CAOS is provides both access pattern obfuscation and concurrent access without a trusted third party for a read-write client and multiple read-only clients.
 
@@ -12,27 +11,27 @@ This repository contains implementations of several storage algorithms, currentl
 CAOS is implemented in a client-server model, while pathORAM is implemented as a local store only.
 Both rely on the same underlying block filesystem.
 
-##CAOS
+## CAOS
 Contained within ```/caos_client```,```/caos_server``` is a C++ implementation of the CAOS scheme.
 
-###Requirements
+### Requirements
   - GCC
-  - Google Protobuf (libprotobuf-dev and protobuf-compiler in UBUNTU)
+  - Google Protobuf (libprotobuf-dev and protobuf-compiler in Ubuntu)
   - LibSSL (libssl-dev in Ubuntu)
   - pkg-config
 
-###Usage
+### Usage
 
-Easyest method is to start with the ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` scripts in ```/caos_testscripts```. If you want to add specific files read the client's commandline is outlined [below] (#Client).
+Easyest method is to start with the ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` scripts in ```/caos_testscripts```. If you want to add specific files read the client's commandline is outlined [below](#### Client).
 
-####Server:
+#### Server:
 To use CAOS start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
 ```
 	caos_server --listen	listens on port 12345 for connections. A custom port can be manually specified after listen if desired.
 	aRAM --debug --*            runs Caos in debug mode
 ```
 
-####Client:
+#### Client:
 Compile the clinet located in ```caos_client``` using ```make```. The Caos client will use the ```localhost``` (127.0.0.1) IP address by default and port ```12345```. If one desires to use a different IP address (or port), this can be changed in Main.cpp inside ```caos_client```. The client's command line is as follows:
 
 
@@ -46,7 +45,7 @@ Compile the clinet located in ```caos_client``` using ```make```. The Caos clien
 
 
 
-###Configuration options
+### Configuration options
 The Caos protocol has several the following configuration values which can be modified:
   - The block size of the store ``blockSize`` can be configured in ``Main.cpp`` *(values in KB)*
   - The size of the store ``storeSize`` can be configured in ``Main.cpp`` *(values in MB)*
@@ -55,8 +54,8 @@ The Caos protocol has several the following configuration values which can be mo
 These values must match between the client and the server versions (i.e. server only has ``blockSize`` and ``storeSize``).
 
 
-##MapCheck
-Contained within ```/map_check``` is a psuedo Caos client designed to test the status of a client's map with respect to it's store. 
+## MapCheck
+Contained within ```/map_check``` is a psuedo Caos client designed to test the status of a client's map with respect to it's store.
 
 The program runs three tests on the map:
 
@@ -74,13 +73,13 @@ The program runs three tests on the map:
 
 Tests carried out by this program do not modify either the map or the file store.
 
-###Requirements
+### Requirements
   - GCC
   - Google Protobuf
   - LibSSL
   - pkg-config
 
-###Setup
+### Setup
 Compile the project with ```make``` and run the resulting ```map_check``` binary. command line flags are as follows:
 
 ```
@@ -89,7 +88,7 @@ Compile the project with ```make``` and run the resulting ```map_check``` binary
 
 MapCheck requires access to the filesystem corresponding to the given map. If this is a local filesystem (stored in a ``store.bin`` file in the cient's root directory) the map_check binary must be executed from the same directory as this file. Server must be running whilst MapCheck is executed.
 
-###Configuration
+### Configuration
 The configuration values in map_check must match those of the client and server. These can be modified as follows:
   - The block size of the filesystem ``blockSize`` can be configured in ``Main.cpp`` *(values in KB)*
   - The size of the filesystem ``storeSize`` can be configured in ``Main.cpp`` *(values in MB)*
