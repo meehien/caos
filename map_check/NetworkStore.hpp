@@ -1,0 +1,28 @@
+#ifndef MAPCHECK_NETSTORE_HPP
+#define MAPCHECK_NETSTORE_HPP
+
+#include "MessageSender.hpp"
+#include "BlockStore.hpp"
+#include "message.pb.h"
+
+class NetworkStore: public BlockStore {
+
+	MessageSender<request, response> *sender;
+	size_t storeBlockCount;
+	size_t storeBlockSize;
+
+public:
+	NetworkStore(int host_port, const char* host_name, size_t storeBlockCount, size_t storeBlockSize);
+	~NetworkStore();
+
+	//TODO: tell mihai moved crypto to netstore to maintain shared parent class with client
+	blockData Read(size_t pos);
+	void Write(size_t pos, blockData b);
+
+	size_t GetBlockCount();
+	size_t GetBlockSize();
+
+	bool WasSerialised();
+};
+
+#endif //MAPCHECK_NETSTORE_HPP

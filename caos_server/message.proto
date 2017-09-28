@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+enum MessageType { READ = 1; WRITE = 2; }
+
+message request{
+
+	required MessageType type = 1;
+	required uint32 pos = 2;
+
+	// WRITE ONLY
+	optional uint32 block_size = 3;
+	optional bytes block = 4;
+
+}
+
+message response{
+
+	required MessageType type = 1;
+	required uint32 pos = 2;
+
+	// READ ONLY
+	optional uint32 block_size = 3;
+	optional bytes block = 4;
+
+	// WRITE ONLY
+	optional bool res = 5;
+
+}
