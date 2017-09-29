@@ -1,12 +1,12 @@
 # Implementation of CAOS: Concurrent-Access Obfuscated Store.
 
-> A secure cloud storage construction that acheives access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. CAOS is provides both access pattern obfuscation and concurrent access without a trusted third party for a read-write client and multiple read-only clients.
+> A secure cloud storage construction that acheives access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. Both the access pattern obfuscation and the concurrent access are provided without a trusted third party.
 
 This repository contains implementations of several storage algorithms, currently:
 
-  - CAOS
-  - MapCheck test script for CAOS
-  - pathORAM
+  - CAOS client, obfuscation client and server
+  - Map test client and scripts for CAOS
+  - An implementation of PathORAM
 
 CAOS is implemented in a client-server model, while pathORAM is implemented as a local store only.
 Both rely on the same underlying block filesystem.
@@ -22,7 +22,7 @@ Contained within ```/caos_client```,```/caos_server``` is a C++ implementation o
 
 ### Usage
 
-Easyest method is to start with the ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` scripts in ```/caos_testscripts```. If you want to add specific files read the client's commandline is outlined [below](#### Client).
+Easyest method is to start with the ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` scripts in ```/caos_testscripts```. If you want to add specific files read the client's commandline is outlined below.
 
 #### Server:
 To use CAOS start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
@@ -61,15 +61,15 @@ The program runs three tests on the map:
 
 - Map Validity
 
-	This test determines how many of the positions listed in the given map remain in the store and that they each contain the block the map states that they should. This test reads each non-empty position from the store which is listed in the map and returns a percentage of positions listed in the map which remain valid.
+	Checks how many of the positions in the map contain the block the map states that they should. This test checks each non-empty position from the store (according to the local map) and returns the percentage of valid positions out of the total checked.
 
 - Map Knowledge
 
-	This test determines how many of the positions in the store are listed in the given map and that the map lists the correct block for that position. This test differs from 1 as it is inclusive of non-empty positions from the store which are not listed at all in the map. The test reads every position from the store and returns a percentage of all the non-empty positions in the store which are listed in the map and remain valid.
+	This test determines how positions from the store are listed in the given map and weather the map lists the correct block for that position. This test differs from 1 as it is inclusive of non-empty positions from the store which are not listed at all in the map. The test returns a percentage of all the non-empty positions in the store which are listed in the map and are valid.
 
 - Hit Rate
 
-	This test determines how many attempts, on average, must be made by a client using the given map before it is able to successfully retrieve a given block. This is determined in main by test 1 however as with each request clients improve their map knowledge of the store this must be accounted for and so cannot simply be calculated by the result of test 1. The test accesses each block a fixed number of times (50 by default) and calculates the average number of attempts that were required for each access. To prevent the modification of the store an intermediate store is used to cache modified positions for the duration of each access.
+	This test determines how many attempts, on average, must be made by a client using a given map before it is able to successfully retrieve a block. This is determined in main by test 1, however as with each request clients improve their map knowledge of the store. The test accesses each block a fixed number of times (50 by default) and calculates the average number of attempts that were successfull for each access. To prevent the modification of the store an intermediate store is used to cache modified positions for the duration of each access.
 
 Tests carried out by this program do not modify either the map or the file store.
 
@@ -80,13 +80,13 @@ Tests carried out by this program do not modify either the map or the file store
   - pkg-config
 
 ### Setup
-Compile the project with ```make``` and run the resulting ```map_check``` binary. command line flags are as follows:
+Compile the project with ```make``` and run the resulting ```map_check``` binary. Command line flags are as follows:
 
 ```
-./map_check [--debug] <map filename>
+map_check [--debug] <map filename>
 ```
 
-MapCheck requires access to the filesystem corresponding to the given map. If this is a local filesystem (stored in a ``store.bin`` file in the cient's root directory) the map_check binary must be executed from the same directory as this file. Server must be running whilst MapCheck is executed.
+MapCheck requires access to the filesystem corresponding to the given map. Server must be running while ```map_check``` is executed.
 
 ### Configuration
 The configuration values in map_check must match those of the client and server. These can be modified as follows:
