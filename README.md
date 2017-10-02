@@ -2,6 +2,8 @@
 
 > A secure cloud storage construction that acheives access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. Both the access pattern obfuscation and the concurrent access are provided without a trusted third party.
 
+This is an implementation of the CAOS obfuscation scheme outlined in https://arxiv.org/abs/1709.10412.
+
 This repository contains implementations of several storage algorithms, currently:
 
   - CAOS client, obfuscation client and server
@@ -89,7 +91,7 @@ map_check [--debug] <map filename>
 MapCheck requires access to the filesystem corresponding to the given map. Server must be running while ```map_check``` is executed.
 
 ### Configuration
-The configuration values in map_check must match those of the client and server. These can be modified as follows:
+The configuration values in ```map_check``` must match those of the client and server. These can be modified as follows:
   - The block size of the filesystem ``blockSize`` can be configured in ``Main.cpp`` *(values in KB)*
   - The size of the filesystem ``storeSize`` can be configured in ``Main.cpp`` *(values in MB)*
   - The type of filesystem can also be selected in ``Main.cpp`` *(uncomment desired filesystem)*
