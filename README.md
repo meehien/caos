@@ -1,4 +1,4 @@
-# Implementation of CAOS: Concurrent-Access Obfuscated Store.
+# CAOS: Concurrent-Access Obfuscated Store.
 
 CAOS is a secure cloud storage construction that achieves access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. Both the access pattern obfuscation and the concurrent access are provided without a trusted third party.
 
@@ -6,14 +6,14 @@ This is an implementation of the CAOS obfuscation scheme outlined in https://arx
 
 This repository contains implementations of several storage algorithms, currently:
 
-- CAOS client, obfuscation client and server
+- CAOS client, server and obfuscation client
 - Map test client and scripts for CAOS
 - An implementation of PathORAM
 
 CAOS is implemented in a client-server model, while pathORAM is implemented as a local store only.
 Both rely on the same underlying block filesystem.
 
-## CAOS
+## CAOS implementation
 Contained within ```/caos_client```,```/caos_server``` is a C++ implementation of the CAOS scheme.
 
 ### Requirements
@@ -34,14 +34,14 @@ aRAM --debug --*	-> runs the CAOS server in debug mode
 ```
 
 #### Client:
-Compile the client located in ```caos_client``` using ```make```. The Caos client will use the ```localhost``` (127.0.0.1) IP address by default and port ```12345```. If one desires to use a different IP address (or port), this can be changed in Main.cpp inside ```caos_client```. The client's command line is as follows:
+Compile the client located in ```caos_client``` using ```make```. The CAOS client will use the ```localhost``` (127.0.0.1) IP address by default and port ```12345```. If one desires to use a different IP address (or port), this can be changed in Main.cpp inside ```caos_client```. The client's command line is as follows:
 
 
 ```
-caos_client --writer --add <filename>	-> adds <filename> to Caos using RW client
-caos_client --writer --get<filename1> <filename2>	-> gets <filename1> from Caos and saves it to <filename2> using RW client
-caos_client --reader --get <filename1> <filename2>	-> gets <filename1> from Caos and saves it to <filename2> using RO client
-caos_client --agent <num1> <num2>	-> runs Caos in agent mode <num1> times with <num2> buffer size
+caos_client --writer --add <filename>	-> adds <filename> to CAOS using RW client
+caos_client --writer --get<filename1> <filename2>	-> gets <filename1> from CAOS and saves it to <filename2> using RW client
+caos_client --reader --get <filename1> <filename2>	-> gets <filename1> from CAOS and saves it to <filename2> using RO client
+caos_client --agent <num1> <num2>	-> runs CAOS in agent mode <num1> times with <num2> buffer size
 caos_client --debug --*	-> runs the CAOS client in debug mode
 ```
 
