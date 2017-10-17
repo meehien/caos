@@ -1,6 +1,6 @@
 # Implementation of CAOS: Concurrent-Access Obfuscated Store.
 
-> A secure cloud storage construction that acheives access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. Both the access pattern obfuscation and the concurrent access are provided without a trusted third party.
+> A secure cloud storage construction that achieves access pattern obfuscation in which both bandwidth overheads and client storage requirements are very low. Both the access pattern obfuscation and the concurrent access are provided without a trusted third party.
 
 This is an implementation of the CAOS obfuscation scheme outlined in https://arxiv.org/abs/1709.10412.
 
@@ -24,17 +24,17 @@ Contained within ```/caos_client```,```/caos_server``` is a C++ implementation o
 
 ### Usage
 
-Easyest method is to start with the ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` scripts in ```/caos_testscripts```. If you want to add specific files read the client's commandline is outlined below.
+Easiest method is to start with our test scripts: ```run_server.sh```, ```run_rwclient.sh``` and ```run_occontinous.sh``` from ```/caos_testscripts```. If you want to do more than testing the actual commands are outlined below.
 
 #### Server:
-To use CAOS start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
+To use the CAOS service start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
 ```
 	caos_server --listen	listens on port 12345 for connections. A custom port can be manually specified after listen if desired.
-	aRAM --debug --*            runs Caos in debug mode
+	aRAM --debug --*            runs CAOS in debug mode
 ```
 
 #### Client:
-Compile the clinet located in ```caos_client``` using ```make```. The Caos client will use the ```localhost``` (127.0.0.1) IP address by default and port ```12345```. If one desires to use a different IP address (or port), this can be changed in Main.cpp inside ```caos_client```. The client's command line is as follows:
+Compile the client located in ```caos_client``` using ```make```. The Caos client will use the ```localhost``` (127.0.0.1) IP address by default and port ```12345```. If one desires to use a different IP address (or port), this can be changed in Main.cpp inside ```caos_client```. The client's command line is as follows:
 
 
 ```
@@ -48,7 +48,7 @@ Compile the clinet located in ```caos_client``` using ```make```. The Caos clien
 
 
 ### Configuration options
-The Caos protocol has several the following configuration values which can be modified:
+The CAOS protocol has several the following configuration values which can be modified:
   - The block size of the store ``blockSize`` can be configured in ``Main.cpp`` *(values in KB)*
   - The size of the store ``storeSize`` can be configured in ``Main.cpp`` *(values in MB)*
   - The number of clients accessing the filesystem ``NUM_CLIENTS`` can be configured in ``Types.hpp``
@@ -57,7 +57,7 @@ These values must match between the client and the server versions (i.e. server 
 
 
 ## MapCheck
-Contained within ```/map_check``` is a psuedo Caos client designed to test the status of a client's map with respect to it's store.
+Contained within ```/map_check``` is a pseudo-client for CAOS designed to test the status of a client's map with respect to it's store.
 
 The program runs three tests on the map:
 
