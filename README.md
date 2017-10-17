@@ -29,8 +29,8 @@ Easiest method is to start with our test scripts: ```run_server.sh```, ```run_rw
 #### Server:
 To use the CAOS service start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
 ```
-caos_server --listen	listens on port 12345 for connections. A custom port can be manually specified after listen if desired.
-aRAM --debug --*	runs CAOS in debug mode
+caos_server --listen	-> listens on port 12345 for connections. A custom port can be manually specified after listen if desired.
+aRAM --debug --*	-> runs the CAOS server in debug mode
 ```
 
 #### Client:
@@ -38,11 +38,11 @@ Compile the client located in ```caos_client``` using ```make```. The Caos clien
 
 
 ```
-caos_client --writer --add <filename> -> adds <filename> to Caos using RW client
-caos_client --writer --get<filename1> <filename2> -> gets <filename1> from Caos and saves it to <filename2> using RW client
-caos_client --reader --get <filename1> <filename2> -> gets <filename1> from Caos and saves it to <filename2> using RO client
-caos_client --agent <num1> <num2> -> runs Caos in agent mode <num1> times with <num2> buffer size
-caos_client --debug --* -> truns Caos in debug mode
+caos_client --writer --add <filename>	-> adds <filename> to Caos using RW client
+caos_client --writer --get<filename1> <filename2>	-> gets <filename1> from Caos and saves it to <filename2> using RW client
+caos_client --reader --get <filename1> <filename2>	-> gets <filename1> from Caos and saves it to <filename2> using RO client
+caos_client --agent <num1> <num2>	-> runs Caos in agent mode <num1> times with <num2> buffer size
+caos_client --debug --*	-> runs the CAOS client in debug mode
 ```
 
 
