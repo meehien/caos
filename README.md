@@ -30,7 +30,7 @@ Easiest method is to start with our test scripts: ```run_server.sh```, ```run_rw
 To use the CAOS service start by compiling the server in ```/caos_server``` with ```make``` and run the resulting ```caos_server``` binary. command line flags are as follows:
 ```
 caos_server --listen	-> listens on port 12345 for connections. A custom port can be manually specified after listen if desired.
-aRAM --debug --*	-> runs the CAOS server in debug mode
+caos_server --debug --*	-> runs the CAOS server in debug mode
 ```
 
 #### Client:
