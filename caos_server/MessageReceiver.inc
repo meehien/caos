@@ -176,7 +176,7 @@ template<class T, class Q>
 void MessageReceiver<T, Q>::SendResponse(void* lp, Q message){
 	int *csock = (int*)lp;
 
-	siz = message.ByteSize()+4;
+	siz = message.ByteSizeLong()+4;
 	pkt = new char [siz];
 
 	Serialize(&message, siz, pkt);
@@ -195,6 +195,6 @@ template<class T, class Q>
 void MessageReceiver<T, Q>::Serialize(Q *message, int siz, char *pkt){
 	google::protobuf::io::ArrayOutputStream aos(pkt,siz);
 	google::protobuf::io::CodedOutputStream *coded_output = new google::protobuf::io::CodedOutputStream(&aos);
-	coded_output->WriteVarint32(message->ByteSize());
+	coded_output->WriteVarint32(message->ByteSizeLong());
 	message->SerializeToCodedStream(coded_output);
 }

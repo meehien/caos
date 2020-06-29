@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BlockStore.hpp"
+#include <string>
 
 class FileStore: public BlockStore {
 	int fd;

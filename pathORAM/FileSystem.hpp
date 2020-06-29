@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <list>
 #include <vector>
+#include <string>
 
 struct FileInfo {
 	size_t length;

@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 enum MessageType { READ = 1; WRITE = 2; }
 
 message request{

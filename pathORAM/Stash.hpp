@@ -4,6 +4,7 @@
 
 #include <unordered_map>
 #include <cstdint>
+#include <string>
 
 using Stash = std::unordered_map<int32_t, block>;
 

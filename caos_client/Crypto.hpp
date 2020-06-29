@@ -6,6 +6,7 @@
 #include <array>
 #include <cstdint>
 
+
 // Encryption constants (in bytes)
 constexpr int IV = 16;
 constexpr int Key = 32;

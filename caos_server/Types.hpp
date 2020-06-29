@@ -1,6 +1,8 @@
 #pragma once
 
 #include <array>
+#include <inttypes.h>
+#include <stdlib.h>
 
 // The main type for passing around raw file data
 using byte_t = uint8_t;

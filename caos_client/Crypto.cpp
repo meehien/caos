@@ -14,7 +14,7 @@ void AES::Setup()
 	// Initialise OpenSSL
 	ERR_load_crypto_strings();
 	OpenSSL_add_all_algorithms();
-	OPENSSL_config(NULL);
+	OPENSSL_no_config();
 }
 
 void AES::Cleanup()

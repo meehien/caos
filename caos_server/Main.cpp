@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cmath>
 
-void* handler(void* lp);
+void *handler(void* lp);
 MessageReceiver<request, response> *receiver;
 BlockStore *store = nullptr;
 MessageHandler *process = nullptr;
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 	delete process;
 }
 
-void* handler(void *lp){
+void *handler(void *lp){
 	int *csock = (int*)lp;
 
 	char buffer[4];
